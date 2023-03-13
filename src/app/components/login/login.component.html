@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-7 col-md-10 col-sm-12 col shadow-sm py-5 bg-white rounded card">
+            <div>
+                <div class="d-flex justify-content-center mb-5">
+                    <h1>Login</h1>
+                    </div>
+            </div>
+
+            <div class="d-flex justify-content-center mb-4">
+            <div class="w-50">
+                <label for="name" class="form-label" >Username:</label>
+                <input type="name" class="form-control" id="name"
+                [(ngModel)]="username"
+                >
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="w-50">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password"
+                [(ngModel)]="password">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="w-50">
+                <button (click)="login()"
+                 class="btn btn-primary w-100">Login</button>
+                </div>
+                </div>
+
+
+           </div>
+
+           
+
+       </div>
+    </div>

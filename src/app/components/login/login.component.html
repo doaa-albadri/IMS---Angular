@@ -12,10 +12,11 @@
 
                 <div class="d-flex justify-content-center mb-4">
                     <div class="w-50">
-                        <label for="username" class="form-label" >Username:</label>
-                        <input type="text" formControlName="username" class="form-control" id="username">
-                        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
-                          <div class="input-error" *ngIf="username?.errors?.['required']">Username is required.</div>
+                        <label for="email" class="form-label" >Email:</label>
+                        <input type="text" formControlName="email" class="form-control" id="email">
+                        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                          <div class="input-error" *ngIf="email?.errors?.['required']">Email is required.</div>
+                          <div class="input-error" *ngIf="email?.errors?.['email']">Email must be a valid email address.</div>
                         </div>
                     </div>
                     </div>

@@ -1,3 +1,12 @@
+.content {
+    margin-left: 100px;
+    margin-right: 30px;
+    transition: 0.3s;
+    &.sidebarExpanded {
+      margin-left: 160px;
+    }
+  }
+
 .cardsRow {
     flex-direction: row;
     column-gap: 2rem;

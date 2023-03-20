@@ -36,7 +36,8 @@ export class LoginComponent {
       .subscribe((res) => {
         console.log('result of login:', res);
         if (res.registered) {
-          this.router.navigate(['/home']);
+          localStorage.setItem('token', res.idToken);
+          this.router.navigate(['/']);
         }
       });
     this.loginForm.reset();

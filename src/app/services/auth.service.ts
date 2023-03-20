@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   kind: string;
@@ -16,7 +17,11 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  isAuth() {
+    return !!localStorage.getItem('token');
+  }
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string) {
     return this.http.post<AuthResponseData>(
@@ -27,5 +32,10 @@ export class AuthService {
         returnSecureToken: true,
       }
     );
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 }

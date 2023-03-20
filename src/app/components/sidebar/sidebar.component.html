@@ -18,19 +18,15 @@
           <div class="title" [routerLink]="['/home']" [routerLinkActive]="'active'">Home</div>
         </div>
 
-        <div class="link" >
+        <div class="link" (click)="onLogout()">
           <div class="content" >
             <div class="icon">
               <i class="bi bi-box-arrow-right"></i>
                         </div>
             <!-- <div class="title" [routerLink]="['/login']" [routerLinkActive]="'active'">Logout</div> -->
-            <div class="title" >Logout</div>
+            <div class="title">Logout</div>
           </div>
       </div>
-
-      <button (click)="onLogout()">test</button>
-
-
 
     <div class="footer"></div>
   </div>

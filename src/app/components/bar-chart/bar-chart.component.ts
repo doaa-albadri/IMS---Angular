@@ -50,7 +50,7 @@ export class BarChartComponent {
     event?: ChartEvent;
     active?: {}[];
   }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({
@@ -60,7 +60,7 @@ export class BarChartComponent {
     event?: ChartEvent;
     active?: {}[];
   }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public randomize(): void {

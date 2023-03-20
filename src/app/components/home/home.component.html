@@ -1,29 +1,31 @@
 <app-header></app-header>
-<app-sidebar  [isExpanded]="sidebarExpanded" (toggleSidebar)="sidebarExpanded = !sidebarExpanded"></app-sidebar>
+<app-sidebar
+  [isExpanded]="sidebarExpanded"
+  (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
+></app-sidebar>
 
-<div class="content" [ngClass]="{ 'sidebarExpanded': sidebarExpanded }">
-    <div class="container">
-        <div class="row mb-5 d-flex justify-content-between cardsRow">
+<div class="content" [ngClass]="{ sidebarExpanded: sidebarExpanded }">
+  <div class="container">
+    <div class="row mb-5 d-flex justify-content-between cardsRow">
+      <ng-container *ngIf="cardData && !!cardData.length">
         <div
-        *ngFor="let card of cardData"
-         class="col-sm-3 shadow-sm p-3 bg-white rounded card cardData"
-         >
-            <h5>{{card.title}}:</h5>
-            <h5>{{card.data}}</h5>
+          *ngFor="let card of cardData"
+          class="col-sm-3 shadow-sm p-3 bg-white rounded card cardData"
+        >
+          <h5>{{ card.title }}:</h5>
+          <h5>{{ card.stat }}</h5>
         </div>
+      </ng-container>
     </div>
-    
-    <div class="row d-flex d-flex justify-content-between chartsRow">
-        <div class="col-sm-12 col-lg-4 shadow-sm p-3 bg-white rounded card">
-            <app-pie-chart></app-pie-chart>
-    
-        </div>
-    
-        <div class="col-sm-12 col-lg-7 shadow-sm p-3 bg-white rounded card">
-            <app-bar-chart></app-bar-chart>
-    
-        </div>
-    
-    </div>
-    </div>  </div>
 
+    <div class="row d-flex d-flex justify-content-between chartsRow">
+      <div class="col-sm-12 col-lg-4 shadow-sm p-3 bg-white rounded card">
+        <app-pie-chart></app-pie-chart>
+      </div>
+
+      <div class="col-sm-12 col-lg-7 shadow-sm p-3 bg-white rounded card">
+        <app-bar-chart></app-bar-chart>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -9,6 +9,7 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent {
+  @Input() data!: { title: string; stat: number }[];
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   // Pie
@@ -28,11 +29,12 @@ export class PieChartComponent {
       },
     },
   };
+
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'],
+    labels: ['Delivered', 'Pending', 'Cancelled'],
     datasets: [
       {
-        data: [300, 500, 100],
+        data: [500, 50, 100],
       },
     ],
   };

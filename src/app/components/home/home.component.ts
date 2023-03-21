@@ -11,15 +11,22 @@ export class HomeComponent implements OnInit {
   sidebarExpanded = true;
 
   cardData: { title: string; stat: number }[] = [];
+  ordersData: { title: string; stat: number }[] = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.fetchCardData();
+    this.fetchPieChartData();
+
+    // setTimeout(() => {
+    //   this.ordersData = this.apiService.ordersData;
+    //   console.log(this.ordersData);
+    // }, 1000);
   }
 
-  fetchCardData = () => {
-    this.apiService.fetchData().subscribe(
+  fetchCardData() {
+    this.apiService.fetchStats().subscribe(
       (res: any) => {
         this.cardData = res['-NQyvmjiAa_QIg4GYWpo'];
       },
@@ -27,5 +34,21 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
-  };
+  }
+
+  fetchPieChartData() {
+    this.apiService.fetchOrdersData().subscribe(
+      (res: any) => {
+        this.ordersData = res['-NQz3JFXxx7JeleMIRr9'];
+        // console.log('orders results', this.ordersData);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  // onAddData() {
+  //   this.apiService.addData();
+  // }
 }

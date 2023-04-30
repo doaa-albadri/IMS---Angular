@@ -21,15 +21,23 @@ export class ApiService {
     );
   }
 
+  fetchProfitsData() {
+    return this.http.get(
+      'https://ng-project-c984a-default-rtdb.firebaseio.com/profits.json'
+    );
+  }
+
   // addData() {
   //   this.http
   //     .post<{ name: string }>(
-  //       'https://ng-project-c984a-default-rtdb.firebaseio.com/orders.json',
-  //       [
-  //         { title: 'Delivered', stat: 83 },
-  //         { title: 'Pending', stat: 50 },
-  //         { title: 'Delivered', stat: 11 },
-  //       ],
+  //       'https://ng-project-c984a-default-rtdb.firebaseio.com/profits.json',
+  //       {
+  //         labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
+  //         datasets: [
+  //           { data: [65, 59, 80, 81, 56, 55, 40], label: 'Convenience Goods' },
+  //           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Impulse Goods' },
+  //         ],
+  //       },
   //       { observe: 'response' }
   //     )
   //     .subscribe((resData) => {

@@ -1,8 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import { ApiService } from 'src/app/services/api.service';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,7 +12,13 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
   styleUrls: ['./bar-chart.component.scss'],
 })
 export class BarChartComponent {
+  private _apiService = inject(ApiService);
+
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
+  chartData$ = this._apiService
+    .fetchProfitsData()
+    .pipe(map((res: any) => res['-NUGewQHWI0t2zt_eWfR']));
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -34,11 +42,19 @@ export class BarChartComponent {
   public barChartType: ChartType = 'bar';
   public barChartPlugins = [DataLabelsPlugin];
 
-  public barChartData: ChartData<'bar'> = {
-    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-    datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    ],
-  };
+  getBarChartData(chartData: any) {
+    return {
+      labels: chartData.labels,
+      datasets: [
+        {
+          data: chartData.datasets[0].data,
+          label: chartData.datasets[0].label,
+        },
+        {
+          data: chartData.datasets[1].data,
+          label: chartData.datasets[1].label,
+        },
+      ],
+    };
+  }
 }

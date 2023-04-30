@@ -1,12 +1,11 @@
 <canvas
+  *ngIf="chartData$ | async as data"
   style="margin-top: 5%"
   baseChart
   class="chart"
-  [data]="barChartData"
+  [data]="getBarChartData(data)"
   [options]="barChartOptions"
   [plugins]="barChartPlugins"
   [type]="barChartType"
 >
 </canvas>
-
-<!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button> -->

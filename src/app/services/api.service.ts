@@ -19,15 +19,6 @@ export class ApiService {
     return this.http.get(
       'https://ng-project-c984a-default-rtdb.firebaseio.com/orders.json'
     );
-    // .subscribe(
-    //   (res: any) => {
-    //     this.ordersData = res['-NQz3JFXxx7JeleMIRr9'];
-    //     // console.log('orders results', this.ordersData);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // )
   }
 
   // addData() {

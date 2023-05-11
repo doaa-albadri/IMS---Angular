@@ -30,11 +30,9 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
   onSubmit() {
-    console.log(this.loginForm.value);
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((res) => {
-        console.log('result of login:', res);
         if (res.registered) {
           localStorage.setItem('token', res.idToken);
           this.router.navigate(['/']);

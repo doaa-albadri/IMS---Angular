@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -27,21 +28,48 @@ export class ApiService {
     );
   }
 
+  fetchPrpductsData() {
+    return this.http.get(
+      'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json'
+    );
+  }
+
+  deleteProduct(id: number | string) {
+    return this.http.delete(
+      `https://ng-project-c984a-default-rtdb.firebaseio.com/products/${id}.json`
+    );
+  }
+
+  addProduct(id: number, name: string, sku: string, price: number) {
+    this.http
+      .post<any>(
+        'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json',
+        {
+          id: id,
+          name: name,
+          sku: sku,
+          price: price,
+        }
+      )
+      .subscribe((res) => {
+        console.log('RESULT:', res);
+      });
+  }
+
   // addData() {
   //   this.http
   //     .post<{ name: string }>(
-  //       'https://ng-project-c984a-default-rtdb.firebaseio.com/profits.json',
-  //       {
-  //         labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-  //         datasets: [
-  //           { data: [65, 59, 80, 81, 56, 55, 40], label: 'Convenience Goods' },
-  //           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Impulse Goods' },
-  //         ],
-  //       },
+  //       'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json',
+  //       [
+  //         { id: 13, name: ' name 1', sku: 'sku 1', price: 300 },
+  //         { id: 65, name: ' name 2', sku: 'sku 2', price: 70 },
+  //         { id: 90, name: ' name 3', sku: 'sku 3', price: 35 },
+  //         { id: 33, name: ' name 4', sku: 'sku 4', price: 125 },
+  //       ],
   //       { observe: 'response' }
   //     )
-  //     .subscribe((resData) => {
-  //       console.log(resData);
-  //     });
+  // .subscribe((resData) => {
+  //   console.log(resData);
+  // });
   // }
 }

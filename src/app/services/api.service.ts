@@ -7,43 +7,48 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ApiService {
-  // ordersData: { title: string; stat: number }[] = [];
   constructor(private http: HttpClient) {}
 
   fetchStats() {
     return this.http.get(
-      'https://ng-project-c984a-default-rtdb.firebaseio.com/stats.json'
+      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/stats.json'
+      'https://imdep.free.beeceptor.com/stats'
     );
   }
 
   fetchOrdersData() {
     return this.http.get(
-      'https://ng-project-c984a-default-rtdb.firebaseio.com/orders.json'
+      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/orders.json'
+      'https://imdep.free.beeceptor.com/orders'
     );
   }
 
   fetchProfitsData() {
     return this.http.get(
-      'https://ng-project-c984a-default-rtdb.firebaseio.com/profits.json'
+      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/profits.json'
+      'https://imdep.free.beeceptor.com/profits'
     );
   }
 
-  fetchPrpductsData() {
+  fetchProductsData() {
     return this.http.get(
-      'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json'
+      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json'
+      'https://imdep.free.beeceptor.com/products'
     );
   }
 
   deleteProduct(id: number | string) {
     return this.http.delete(
-      `https://ng-project-c984a-default-rtdb.firebaseio.com/products/${id}.json`
+      // `https://ng-project-c984a-default-rtdb.firebaseio.com/products/${id}.json`
+      `https://imdep.free.beeceptor.com/products/${id}`
     );
   }
 
   addProduct(id: number, name: string, sku: string, price: number) {
     this.http
       .post<any>(
-        'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json',
+        // 'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json',
+        'https://imdep.free.beeceptor.com/products',
         {
           id: id,
           name: name,

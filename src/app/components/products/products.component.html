@@ -31,9 +31,9 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody *ngFor="let row of keys$ | async">
+      <tbody *ngFor="let row of productsData$ | async">
         <tr>
-          <th scope="row">{{ productsData$ }}</th>
+          <th scope="row">{{ row.id }}</th>
           <td>{{ row.name }}</td>
           <td>{{ row.sku }}</td>
           <td>${{ row.price }}</td>

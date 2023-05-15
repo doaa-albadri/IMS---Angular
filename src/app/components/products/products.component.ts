@@ -25,25 +25,13 @@ export class ProductsComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
 
   productsData$: Product[] | any = this._apiService
-    .fetchPrpductsData()
+    .fetchProductsData()
     .pipe(map((res: any) => res));
-  // .pipe(map((res: any) => Object.keys(res)));
-
-  keys$ = this.productsData$.pipe(map((res: any) => Object.keys(res)));
-
-  // .forEach((item) => {
-  //   const key = Object.keys(item);
-  //   console.log('Item ID:', key);
-  // });
 
   deleteProduct(id: number | string) {
     this._apiService.deleteProduct(id).subscribe(
       (res) => {
         console.log('DELETED SUCCESSFULLY', res);
-        // Fetch the updated product data after deletion
-        this.productsData$ = this._apiService
-          .fetchPrpductsData()
-          .pipe(map((res: any) => res));
       },
       (error) => console.log('ERROR', error)
     );
@@ -61,7 +49,7 @@ export class ProductsComponent implements OnInit {
     } else {
       console.log('not getting the search term');
       this.productsData$ = this._apiService
-        .fetchPrpductsData()
+        .fetchProductsData()
         .pipe(map((res: any) => res));
     }
   }

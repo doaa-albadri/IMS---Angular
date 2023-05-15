@@ -16,9 +16,7 @@ export class BarChartComponent {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  chartData$ = this._apiService
-    .fetchProfitsData()
-    .pipe(map((res: any) => res['-NUGewQHWI0t2zt_eWfR']));
+  chartData$ = this._apiService.fetchProfitsData().pipe(map((res: any) => res));
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,

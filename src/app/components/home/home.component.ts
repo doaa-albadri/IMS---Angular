@@ -15,17 +15,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCardData();
-
-    // setTimeout(() => {
-    //   this.ordersData = this.apiService.ordersData;
-    //   console.log(this.ordersData);
-    // }, 1000);
   }
 
   fetchCardData() {
     this.apiService.fetchStats().subscribe(
       (res: any) => {
-        this.cardData = res['-NQyvmjiAa_QIg4GYWpo'];
+        this.cardData = res;
       },
       (error) => {
         console.log(error);

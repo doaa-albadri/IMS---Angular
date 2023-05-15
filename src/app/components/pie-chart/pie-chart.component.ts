@@ -16,9 +16,7 @@ export class PieChartComponent {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  chartData$ = this._apiService
-    .fetchOrdersData()
-    .pipe(map((res: any) => res['-NQz3JFXxx7JeleMIRr9']));
+  chartData$ = this._apiService.fetchOrdersData().pipe(map((res: any) => res));
 
   labels$ = this.chartData$.pipe(
     map((labels: any) => labels.map((item: any) => item.title))

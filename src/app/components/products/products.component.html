@@ -38,7 +38,7 @@
           <td>{{ row.sku }}</td>
           <td>${{ row.price }}</td>
           <td>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" (click)="editRow(row, content)">
               <i class="bi bi-pencil"></i>
             </button>
           </td>
@@ -61,6 +61,6 @@
         (click)="modal.dismiss('Cross click')"
       ></button>
     </div>
-    <app-modal title="Add Product"></app-modal>
+    <app-modal title="Add Product" [rowData]="selectedRowData"></app-modal>
   </ng-template>
 </div>

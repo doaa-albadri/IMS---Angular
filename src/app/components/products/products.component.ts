@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -20,6 +19,7 @@ export class ProductsComponent implements OnInit {
   sidebarExpanded = true;
   searchTerm: string = '';
   title!: string;
+  selectedRowData: any = {};
 
   private _apiService = inject(ApiService);
   constructor(private modalService: NgbModal) {}
@@ -27,6 +27,12 @@ export class ProductsComponent implements OnInit {
   productsData$: Product[] | any = this._apiService
     .fetchProductsData()
     .pipe(map((res: any) => res));
+
+  editRow(rowData: any, content: any) {
+    this.selectedRowData = rowData;
+    // Open the modal here
+    this.openVerticallyCentered(content);
+  }
 
   deleteProduct(id: number | string) {
     this._apiService.deleteProduct(id).subscribe(

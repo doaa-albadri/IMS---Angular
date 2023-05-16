@@ -1,34 +1,24 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 
+interface CardData {
+  title: string;
+  stat: number;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   sidebarExpanded = true;
 
-  cardData: { title: string; stat: number }[] = [];
+  cardData: CardData[] = [];
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit() {
-    this.fetchCardData();
-  }
-
-  fetchCardData() {
-    this.apiService.fetchStats().subscribe(
-      (res: any) => {
-        this.cardData = res;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-  // onAddData() {
-  //   this.apiService.addData();
-  // }
+  cardData$: CardData[] | any = this.apiService
+    .fetchStats()
+    .pipe(map((res: any) => res));
 }

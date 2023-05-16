@@ -7,15 +7,13 @@
 <div class="content" [ngClass]="{ sidebarExpanded: sidebarExpanded }">
   <div class="container">
     <div class="row mb-5 d-flex justify-content-between cardsRow">
-      <ng-container *ngIf="cardData && !!cardData.length">
-        <div
-          *ngFor="let card of cardData"
-          class="col-sm-3 shadow-sm p-3 bg-white rounded card cardData"
-        >
-          <h5>{{ card.title }}:</h5>
-          <h5>{{ card.stat }}</h5>
-        </div>
-      </ng-container>
+      <div
+        *ngFor="let card of cardData$ | async"
+        class="col-sm-3 shadow-sm p-3 bg-white rounded card cardData"
+      >
+        <h5>{{ card.title }}:</h5>
+        <h5>{{ card.stat }}</h5>
+      </div>
     </div>
 
     <div class="row d-flex d-flex justify-content-between chartsRow">

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
@@ -22,23 +22,22 @@ import { ApiService } from 'src/app/services/api.service';
     `,
   ],
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
   closeResult!: string;
 
   @Input() title!: string;
+  @Input() rowData: any;
 
   form!: FormGroup;
 
-  constructor(
-    private modalService: NgbModal,
-    private fb: FormBuilder,
-    private apiService: ApiService
-  ) {
+  constructor(private fb: FormBuilder, private apiService: ApiService) {}
+
+  ngOnInit(): void {
     this.form = this.fb.group({
-      id: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      sku: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      id: [this.rowData ? this.rowData.id : '', [Validators.required]],
+      name: [this.rowData ? this.rowData.name : '', [Validators.required]],
+      sku: [this.rowData ? this.rowData.sku : '', [Validators.required]],
+      price: [this.rowData ? this.rowData.price : '', [Validators.required]],
     });
   }
 
@@ -56,7 +55,6 @@ export class ModalComponent {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     this.apiService.addProduct(
       this.form.value.id,
       this.form.value.name,

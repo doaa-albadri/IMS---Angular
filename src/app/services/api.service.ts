@@ -44,6 +44,15 @@ export class ApiService {
     );
   }
 
+  editProduct(id: number, name: string, sku: string, price: number) {
+    return this.http.put(`https://imdep.free.beeceptor.com/products/${id}`, {
+      id: id,
+      name: name,
+      sku: sku,
+      price: price,
+    });
+  }
+
   addProduct(id: number, name: string, sku: string, price: number) {
     this.http
       .post<any>(

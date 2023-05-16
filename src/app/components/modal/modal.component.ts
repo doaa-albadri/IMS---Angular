@@ -55,13 +55,25 @@ export class ModalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.apiService.addProduct(
-      this.form.value.id,
-      this.form.value.name,
-      this.form.value.sku,
-      this.form.value.price
-    );
+    if (this.rowData) {
+      console.log(this.form.value);
+      this.apiService
+        .editProduct(
+          this.form.value.id,
+          this.form.value.name,
+          this.form.value.sku,
+          this.form.value.price
+        )
+        .subscribe();
+    } else {
+      this.apiService.addProduct(
+        this.form.value.id,
+        this.form.value.name,
+        this.form.value.sku,
+        this.form.value.price
+      );
 
-    this.form.reset();
+      this.form.reset();
+    }
   }
 }

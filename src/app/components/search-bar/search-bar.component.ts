@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent {
-  @Input() searchTerm!: string;
-  @Output() search = new EventEmitter<string>();
+  @Output() searchChange = new EventEmitter<string>();
+  searchTerm: string = '';
 
-  onSearch(searchTerm: string) {
-    this.search.emit(searchTerm);
+  onSearchChange(): void {
+    this.searchChange.emit(this.searchTerm);
   }
 }

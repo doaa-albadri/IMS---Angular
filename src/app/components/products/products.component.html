@@ -8,8 +8,7 @@
   <div class="table-top">
     <app-search-bar
       class="search-bar"
-      [searchTerm]="searchTerm"
-      (search)="filterProducts($event)"
+      (searchChange)="filterProducts($event)"
     ></app-search-bar>
     <div class="btns">
       <app-button (click)="openVerticallyCentered(content)"
@@ -32,7 +31,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody *ngFor="let row of productsData$ | async">
+      <tbody *ngFor="let row of filteredData">
         <tr>
           <th scope="row">{{ row.id }}</th>
           <td>{{ row.name }}</td>

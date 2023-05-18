@@ -22,13 +22,32 @@ export class ProductsComponent implements OnInit {
   searchTerm: string = '';
   title!: string;
   selectedRowData: any = {};
+  productsData: any[] = [];
+  filteredData: any[] = [];
 
   private _apiService = inject(ApiService);
   constructor(private modalService: NgbModal) {}
 
+  ngOnInit(): void {
+    this.productsData$ = this._apiService.fetchProductsData();
+    this.productsData$.subscribe((data) => {
+      this.productsData = data;
+      this.filteredData = data;
+    });
+  }
+
   productsData$: Product[] | any = this._apiService
     .fetchProductsData()
     .pipe(map((res: any) => res));
+
+  filterProducts(searchTerm: string): void {
+    this.filteredData = this.productsData.filter((product) => {
+      return (
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.sku.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
+  }
 
   downloadPDF() {
     const table: HTMLElement | any = document.getElementById('products-table');
@@ -57,26 +76,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  filterProducts(searchTerm: string): void {
-    if (searchTerm) {
-      this.productsData$ = this.productsData$.filter((product: Product) => {
-        return (
-          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.sku.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      });
-      console.log(this.productsData$);
-    } else {
-      console.log('not getting the search term');
-      this.productsData$ = this._apiService
-        .fetchProductsData()
-        .pipe(map((res: any) => res));
-    }
-  }
-
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
-
-  ngOnInit(): void {}
 }

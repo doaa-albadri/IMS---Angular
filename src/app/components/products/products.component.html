@@ -12,15 +12,16 @@
       (search)="filterProducts($event)"
     ></app-search-bar>
     <div class="btns">
-      <app-button
-        (click)="openVerticallyCentered(content)"
-        text="Add"
+      <app-button (click)="openVerticallyCentered(content)"
+        ><i class="bi bi-plus-lg"></i
       ></app-button>
-      <app-button text="Print"></app-button>
+      <app-button (click)="downloadPDF()">
+        <i class="bi bi-download"></i>
+      </app-button>
     </div>
   </div>
   <div class="table-responsive">
-    <table class="table">
+    <table id="products-table" class="table">
       <thead style="background-color: rgb(241, 241, 241)">
         <tr>
           <th scope="col">ID</th>

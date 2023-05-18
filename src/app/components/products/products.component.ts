@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface Product {
   id: number;
@@ -28,9 +30,21 @@ export class ProductsComponent implements OnInit {
     .fetchProductsData()
     .pipe(map((res: any) => res));
 
+  downloadPDF() {
+    const table: HTMLElement | any = document.getElementById('products-table');
+
+    html2canvas(table).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      var imgWidth = 208;
+      var imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, 'PNG', 5, 5, imgWidth, imgHeight);
+      pdf.save('products-table.pdf');
+    });
+  }
+
   editRow(rowData: any, content: any) {
     this.selectedRowData = rowData;
-    // Open the modal here
     this.openVerticallyCentered(content);
   }
 

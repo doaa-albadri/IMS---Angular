@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css'],
+  selector: 'app-suppliers-modal',
+  templateUrl: './suppliers-modal.component.html',
+  styleUrls: ['./suppliers-modal.component.css'],
   styles: [
     `
       .dark-modal .modal-content {
@@ -21,7 +21,7 @@ import { ApiService } from 'src/app/services/api.service';
     `,
   ],
 })
-export class ModalComponent implements OnInit {
+export class SuppliersModalComponent implements OnInit {
   closeResult!: string;
 
   @Input() title!: string;
@@ -35,8 +35,11 @@ export class ModalComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.rowData ? this.rowData.id : '', [Validators.required]],
       name: [this.rowData ? this.rowData.name : '', [Validators.required]],
-      sku: [this.rowData ? this.rowData.sku : '', [Validators.required]],
-      price: [this.rowData ? this.rowData.price : '', [Validators.required]],
+      phone: [this.rowData ? this.rowData.phone : '', [Validators.required]],
+      address: [
+        this.rowData ? this.rowData.address : '',
+        [Validators.required],
+      ],
     });
   }
 
@@ -46,11 +49,11 @@ export class ModalComponent implements OnInit {
   get name() {
     return this.form.get('name');
   }
-  get sku() {
-    return this.form.get('sku');
+  get phone() {
+    return this.form.get('phone');
   }
-  get price() {
-    return this.form.get('price');
+  get address() {
+    return this.form.get('address');
   }
 
   onSubmit(): void {
@@ -60,16 +63,16 @@ export class ModalComponent implements OnInit {
         .editProduct(
           this.form.value.id,
           this.form.value.name,
-          this.form.value.sku,
-          this.form.value.price
+          this.form.value.phone,
+          this.form.value.address
         )
         .subscribe();
     } else {
       this.apiService.addProduct(
         this.form.value.id,
         this.form.value.name,
-        this.form.value.sku,
-        this.form.value.price
+        this.form.value.phone,
+        this.form.value.address
       );
 
       this.form.reset();

@@ -1,1 +1,69 @@
-<p>suppliers works!</p>
+<app-header></app-header>
+<app-sidebar
+  [isExpanded]="sidebarExpanded"
+  (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
+></app-sidebar>
+
+<div class="content" [ngClass]="{ sidebarExpanded: sidebarExpanded }">
+  <div class="table-top">
+    <app-search-bar
+      class="search-bar"
+      (searchChange)="filterData($event)"
+    ></app-search-bar>
+    <div class="btns">
+      <app-button (click)="openVerticallyCentered(content)"
+        ><i class="bi bi-plus-lg"></i
+      ></app-button>
+      <app-button (click)="downloadPDF()">
+        <i class="bi bi-download"></i>
+      </app-button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table id="suppliers-table" class="table">
+      <thead style="background-color: rgb(241, 241, 241)">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Address</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let row of filteredData">
+        <tr>
+          <th scope="row">{{ row.id }}</th>
+          <td>{{ row.name }}</td>
+          <td>{{ row.phone }}</td>
+          <td>{{ row.address }}</td>
+          <td>
+            <button class="btn btn-secondary" (click)="editRow(row, content)">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteSupplier(row.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #content let-modal>
+    <div class="closeBtn">
+      <button
+        style="margin-top: 15px; margin-right: 15px"
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <app-suppliers-modal
+      title="Suppliers"
+      [rowData]="selectedRowData"
+    ></app-suppliers-modal>
+  </ng-template>
+</div>

@@ -1,0 +1,45 @@
+.content {
+  margin-left: 100px;
+  margin-right: 30px;
+  transition: 0.3s;
+  &.sidebarExpanded {
+    margin-left: 160px;
+  }
+}
+
+.table-top {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  column-gap: 20px;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.btns {
+  display: flex;
+  column-gap: 20px;
+}
+
+.closeBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media only screen and (max-width: 600px) {
+  .table-top {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+  .search-bar {
+    margin-top: 20px;
+  }
+
+  .btns {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

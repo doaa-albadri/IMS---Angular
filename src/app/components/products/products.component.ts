@@ -28,17 +28,16 @@ export class ProductsComponent implements OnInit {
   private _apiService = inject(ApiService);
   constructor(private modalService: NgbModal) {}
 
+  productsData$: Product[] | any = this._apiService
+    .fetchProductsData()
+    .pipe(map((res: any) => res));
+
   ngOnInit(): void {
-    this.productsData$ = this._apiService.fetchProductsData();
     this.productsData$.subscribe((data) => {
       this.productsData = data;
       this.filteredData = data;
     });
   }
-
-  productsData$: Product[] | any = this._apiService
-    .fetchProductsData()
-    .pipe(map((res: any) => res));
 
   filterProducts(searchTerm: string): void {
     this.filteredData = this.productsData.filter((product) => {

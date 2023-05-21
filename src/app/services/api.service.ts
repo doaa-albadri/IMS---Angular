@@ -10,38 +10,31 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   fetchStats() {
-    return this.http.get(
-      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/stats.json'
-      'https://imdep.free.beeceptor.com/stats'
-    );
+    return this.http.get('https://imdep.free.beeceptor.com/stats');
   }
 
   fetchOrdersData() {
-    return this.http.get(
-      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/orders.json'
-      'https://imdep.free.beeceptor.com/orders'
-    );
+    return this.http.get('https://imdep.free.beeceptor.com/orders');
   }
 
   fetchProfitsData() {
-    return this.http.get(
-      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/profits.json'
-      'https://imdep.free.beeceptor.com/profits'
-    );
+    return this.http.get('https://imdep.free.beeceptor.com/profits');
   }
 
   fetchProductsData() {
-    return this.http.get(
-      // 'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json'
-      'https://imdep.free.beeceptor.com/products'
-    );
+    return this.http.get('https://imdep.free.beeceptor.com/products');
+  }
+
+  fetchSuppliersData() {
+    return this.http.get('https://imdep.free.beeceptor.com/suppliers');
   }
 
   deleteProduct(id: number | string) {
-    return this.http.delete(
-      // `https://ng-project-c984a-default-rtdb.firebaseio.com/products/${id}.json`
-      `https://imdep.free.beeceptor.com/products/${id}`
-    );
+    return this.http.delete(`https://imdep.free.beeceptor.com/products/${id}`);
+  }
+
+  deleteSupplier(id: number | string) {
+    return this.http.delete(`https://imdep.free.beeceptor.com/suppliers/${id}`);
   }
 
   editProduct(id: number, name: string, sku: string, price: number) {
@@ -53,37 +46,38 @@ export class ApiService {
     });
   }
 
+  editSupplier(id: number, name: string, phone: number, address: string) {
+    return this.http.put(`https://imdep.free.beeceptor.com/suppliers/${id}`, {
+      id: id,
+      name: name,
+      phone: phone,
+      address: address,
+    });
+  }
+
   addProduct(id: number, name: string, sku: string, price: number) {
     this.http
-      .post<any>(
-        // 'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json',
-        'https://imdep.free.beeceptor.com/products',
-        {
-          id: id,
-          name: name,
-          sku: sku,
-          price: price,
-        }
-      )
+      .post<any>('https://imdep.free.beeceptor.com/products', {
+        id: id,
+        name: name,
+        sku: sku,
+        price: price,
+      })
       .subscribe((res) => {
         console.log('RESULT:', res);
       });
   }
 
-  // addData() {
-  //   this.http
-  //     .post<{ name: string }>(
-  //       'https://ng-project-c984a-default-rtdb.firebaseio.com/products.json',
-  //       [
-  //         { id: 13, name: ' name 1', sku: 'sku 1', price: 300 },
-  //         { id: 65, name: ' name 2', sku: 'sku 2', price: 70 },
-  //         { id: 90, name: ' name 3', sku: 'sku 3', price: 35 },
-  //         { id: 33, name: ' name 4', sku: 'sku 4', price: 125 },
-  //       ],
-  //       { observe: 'response' }
-  //     )
-  // .subscribe((resData) => {
-  //   console.log(resData);
-  // });
-  // }
+  addSupplier(id: number, name: string, phone: number, address: string) {
+    this.http
+      .post<any>('https://imdep.free.beeceptor.com/products', {
+        id: id,
+        name: name,
+        phone: phone,
+        address: address,
+      })
+      .subscribe((res) => {
+        console.log('RESULT:', res);
+      });
+  }
 }

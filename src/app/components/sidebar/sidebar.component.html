@@ -17,8 +17,6 @@
           Home
         </div>
       </div>
-
-      <div class="footer"></div>
     </div>
 
     <div class="link">
@@ -34,8 +32,21 @@
           Products
         </div>
       </div>
+    </div>
 
-      <div class="footer"></div>
+    <div class="link">
+      <div class="content">
+        <div class="icon">
+          <i class="bi bi-box"></i>
+        </div>
+        <div
+          class="title"
+          [routerLink]="['/suppliers']"
+          [routerLinkActive]="'active'"
+        >
+          Suppliers
+        </div>
+      </div>
     </div>
     <div class="link" (click)="onLogout()">
       <div class="content">

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Product {
   id: number;
@@ -21,14 +22,18 @@ export class ProductsComponent implements OnInit {
   sidebarExpanded = true;
   searchTerm: string = '';
   title!: string;
-  selectedRowData: any = {};
   productsData: any[] = [];
   filteredData: any[] = [];
+  rowData: any;
+  form!: FormGroup;
 
-  private _apiService = inject(ApiService);
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private apiService: ApiService
+  ) {}
 
-  productsData$: Product[] | any = this._apiService
+  productsData$: Product[] | any = this.apiService
     .fetchProductsData()
     .pipe(map((res: any) => res));
 
@@ -37,6 +42,54 @@ export class ProductsComponent implements OnInit {
       this.productsData = data;
       this.filteredData = data;
     });
+  }
+
+  get id() {
+    return this.form.get('id');
+  }
+  get name() {
+    return this.form.get('name');
+  }
+  get sku() {
+    return this.form.get('sku');
+  }
+  get price() {
+    return this.form.get('price');
+  }
+
+  onSubmit(): void {
+    if (this.rowData) {
+      console.log(this.form.value);
+      this.apiService
+        .editProduct(
+          this.form.value.id,
+          this.form.value.name,
+          this.form.value.sku,
+          this.form.value.price
+        )
+        .subscribe();
+    } else {
+      this.apiService.addProduct(
+        this.form.value.id,
+        this.form.value.name,
+        this.form.value.sku,
+        this.form.value.price
+      );
+
+      this.form.reset();
+    }
+  }
+
+  editRow(rowData: any, content: any) {
+    this.rowData = rowData;
+    this.form = this.fb.group({
+      id: [this.rowData ? this.rowData.id : '', [Validators.required]],
+      name: [this.rowData ? this.rowData.name : '', [Validators.required]],
+      sku: [this.rowData ? this.rowData.sku : '', [Validators.required]],
+      price: [this.rowData ? this.rowData.price : '', [Validators.required]],
+    });
+
+    this.openVerticallyCentered(content);
   }
 
   filterProducts(searchTerm: string): void {
@@ -61,18 +114,24 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  editRow(rowData: any, content: any) {
-    this.selectedRowData = rowData;
-    this.openVerticallyCentered(content);
-  }
-
   deleteProduct(id: number | string) {
-    this._apiService.deleteProduct(id).subscribe(
+    this.apiService.deleteProduct(id).subscribe(
       (res) => {
         console.log('DELETED SUCCESSFULLY', res);
       },
       (error) => console.log('ERROR', error)
     );
+  }
+
+  addProduct(content: any) {
+    this.form = this.fb.group({
+      id: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      sku: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+    });
+
+    this.openVerticallyCentered(content);
   }
 
   openVerticallyCentered(content: any) {

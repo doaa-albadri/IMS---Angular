@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/services/api.service';
-
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -21,58 +18,8 @@ import { ApiService } from 'src/app/services/api.service';
     `,
   ],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   closeResult!: string;
 
   @Input() title!: string;
-  @Input() rowData: any;
-
-  form!: FormGroup;
-
-  constructor(private fb: FormBuilder, private apiService: ApiService) {}
-
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      id: [this.rowData ? this.rowData.id : '', [Validators.required]],
-      name: [this.rowData ? this.rowData.name : '', [Validators.required]],
-      sku: [this.rowData ? this.rowData.sku : '', [Validators.required]],
-      price: [this.rowData ? this.rowData.price : '', [Validators.required]],
-    });
-  }
-
-  get id() {
-    return this.form.get('id');
-  }
-  get name() {
-    return this.form.get('name');
-  }
-  get sku() {
-    return this.form.get('sku');
-  }
-  get price() {
-    return this.form.get('price');
-  }
-
-  onSubmit(): void {
-    if (this.rowData) {
-      console.log(this.form.value);
-      this.apiService
-        .editProduct(
-          this.form.value.id,
-          this.form.value.name,
-          this.form.value.sku,
-          this.form.value.price
-        )
-        .subscribe();
-    } else {
-      this.apiService.addProduct(
-        this.form.value.id,
-        this.form.value.name,
-        this.form.value.sku,
-        this.form.value.price
-      );
-
-      this.form.reset();
-    }
-  }
 }

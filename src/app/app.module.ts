@@ -17,7 +17,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { SuppliersComponent } from './pages/suppliers/suppliers.component';
-import { SuppliersModalComponent } from './components/suppliers-modal/suppliers-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { SuppliersModalComponent } from './components/suppliers-modal/suppliers-
     ButtonComponent,
     ModalComponent,
     SuppliersComponent,
-    SuppliersModalComponent,
   ],
   imports: [
     BrowserModule,

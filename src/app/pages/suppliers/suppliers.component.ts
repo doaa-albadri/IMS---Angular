@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Supplier {
   id: number;
@@ -20,14 +21,18 @@ export class SuppliersComponent implements OnInit {
   sidebarExpanded = true;
   searchTerm: string = '';
   title!: string;
-  selectedRowData: any = {};
+  rowData: any = {};
   suppliersData: Supplier[] = [];
   filteredData: Supplier[] = [];
+  form!: FormGroup;
 
-  private _apiService = inject(ApiService);
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private apiService: ApiService
+  ) {}
 
-  suppliersData$: Supplier[] | any = this._apiService
+  suppliersData$: Supplier[] | any = this.apiService
     .fetchSuppliersData()
     .pipe(map((res: any) => res));
 
@@ -36,6 +41,42 @@ export class SuppliersComponent implements OnInit {
       this.suppliersData = data;
       this.filteredData = data;
     });
+  }
+
+  get id() {
+    return this.form.get('id');
+  }
+  get name() {
+    return this.form.get('name');
+  }
+  get phone() {
+    return this.form.get('phone');
+  }
+  get address() {
+    return this.form.get('address');
+  }
+
+  onSubmit(): void {
+    if (this.rowData) {
+      console.log(this.form.value);
+      this.apiService
+        .editProduct(
+          this.form.value.id,
+          this.form.value.name,
+          this.form.value.phone,
+          this.form.value.address
+        )
+        .subscribe();
+    } else {
+      this.apiService.addProduct(
+        this.form.value.id,
+        this.form.value.name,
+        this.form.value.phone,
+        this.form.value.address
+      );
+
+      this.form.reset();
+    }
   }
 
   filterData(searchTerm: string): void {
@@ -57,13 +98,33 @@ export class SuppliersComponent implements OnInit {
     });
   }
 
+  addSupplier(content: any) {
+    this.openVerticallyCentered(content);
+
+    this.form = this.fb.group({
+      id: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+    });
+  }
+
   editRow(rowData: any, content: any) {
-    this.selectedRowData = rowData;
+    this.rowData = rowData;
+    this.form = this.fb.group({
+      id: [this.rowData ? this.rowData.id : '', [Validators.required]],
+      name: [this.rowData ? this.rowData.name : '', [Validators.required]],
+      phone: [this.rowData ? this.rowData.phone : '', [Validators.required]],
+      address: [
+        this.rowData ? this.rowData.address : '',
+        [Validators.required],
+      ],
+    });
     this.openVerticallyCentered(content);
   }
 
   deleteSupplier(id: number | string) {
-    this._apiService.deleteSupplier(id).subscribe(
+    this.apiService.deleteSupplier(id).subscribe(
       (res) => {
         console.log('DELETED SUCCESSFULLY', res);
       },

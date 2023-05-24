@@ -17,6 +17,12 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { SuppliersComponent } from './pages/suppliers/suppliers.component';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { SalesReportComponent } from './pages/reports/sales-report/sales-report.component';
+import { CustomerReportComponent } from './pages/reports/customer-report/customer-report.component';
+import { InventoryReportComponent } from './pages/reports/inventory-report/inventory-report.component';
+import { ScatterChartComponent } from './components/scatter-chart/scatter-chart.component';
+import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +38,12 @@ import { SuppliersComponent } from './pages/suppliers/suppliers.component';
     ButtonComponent,
     ModalComponent,
     SuppliersComponent,
+    ReportsComponent,
+    SalesReportComponent,
+    CustomerReportComponent,
+    InventoryReportComponent,
+    ScatterChartComponent,
+    DoughnutChartComponent,
   ],
   imports: [
     BrowserModule,

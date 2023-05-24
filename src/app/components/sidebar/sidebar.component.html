@@ -37,7 +37,7 @@
     <div class="link">
       <div class="content">
         <div class="icon">
-          <i class="bi bi-box"></i>
+          <i class="bi bi-person-vcard"></i>
         </div>
         <div
           class="title"
@@ -48,6 +48,22 @@
         </div>
       </div>
     </div>
+
+    <div class="link">
+      <div class="content">
+        <div class="icon">
+          <i class="bi bi-file-earmark"></i>
+        </div>
+        <div
+          class="title"
+          [routerLink]="['/reports']"
+          [routerLinkActive]="'active'"
+        >
+          Reports
+        </div>
+      </div>
+    </div>
+
     <div class="link" (click)="onLogout()">
       <div class="content">
         <div class="icon">

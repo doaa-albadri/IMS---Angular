@@ -1,0 +1,38 @@
+<app-header></app-header>
+<app-sidebar
+  [isExpanded]="sidebarExpanded"
+  (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
+></app-sidebar>
+
+<div class="content" [ngClass]="{ sidebarExpanded: sidebarExpanded }">
+  <select
+    class="form-select mb-4"
+    aria-label="Default select example"
+    [(ngModel)]="selectedReport"
+  >
+    <option value="sales">Sales Report</option>
+    <option value="customer">Cuatomer Report</option>
+    <option value="inventory">Inventory Report</option>
+  </select>
+
+  <div
+    class="shadow-sm p-3 bg-white rounded card"
+    *ngIf="selectedReport === 'sales'"
+  >
+    <app-sales-report></app-sales-report>
+  </div>
+
+  <div
+    class="shadow-sm p-3 bg-white rounded card"
+    *ngIf="selectedReport === 'customer'"
+  >
+    <h2>Customer Report</h2>
+  </div>
+
+  <div
+    class="shadow-sm p-3 bg-white rounded card"
+    *ngIf="selectedReport === 'inventory'"
+  >
+    <h2>Inventory Report</h2>
+  </div>
+</div>

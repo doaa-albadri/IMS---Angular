@@ -11,28 +11,33 @@ export class ScatterChartComponent {
   public scatterChartOptions: ChartConfiguration['options'] = {
     responsive: true,
   };
-  public scatterChartLabels: string[] = [
-    'Eating',
-    'Drinking',
-    'Sleeping',
-    'Designing',
-    'Coding',
-    'Cycling',
-    'Running',
-  ];
+  // public scatterChartLabels: string[] = [
+  //   'Jan',
+  //   'Feb',
+  //   'Mar',
+  //   'Apr',
+  //   'May',
+  //   'Jun',
+  //   'Jul',
+  //   'Aug',
+  //   'Sep',
+  //   'Oct',
+  //   'Nov',
+  //   'Dec'
+  // ];
 
   public scatterChartData: ChartData<'scatter'> = {
-    labels: this.scatterChartLabels,
+    // labels: this.scatterChartLabels,
     datasets: [
       {
         data: [
-          { x: 1, y: 1 },
-          { x: 2, y: 3 },
-          { x: 3, y: -2 },
-          { x: 4, y: 4 },
-          { x: 5, y: -3 },
+          { x: 19, y: 5000 },
+          { x: 20, y: 10000 },
+          { x: 21, y: 15000 },
+          { x: 22, y: 20000 },
+          { x: 23, y: 25000 },
         ],
-        label: 'Series A',
+        label: 'Monthly Revenue',
         pointRadius: 10,
       },
     ],

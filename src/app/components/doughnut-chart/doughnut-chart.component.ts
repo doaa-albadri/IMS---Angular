@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
@@ -7,20 +7,21 @@ import { ChartData, ChartEvent, ChartType } from 'chart.js';
   styleUrls: ['./doughnut-chart.component.scss'],
 })
 export class DoughnutChartComponent {
+  @Input() doughnutChartData$: any;
+
   // Doughnut
-  public doughnutChartLabels: string[] = [
-    'Download Sales',
-    'In-Store Sales',
-    'Mail-Order Sales',
-  ];
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [350, 450, 100] },
-      { data: [50, 150, 120] },
-      { data: [250, 130, 70] },
-    ],
-  };
+
+  getDoughnutChartData(chartData: any) {
+    return {
+      labels: [chartData[0].title, chartData[1].title, chartData[2].title],
+      datasets: [
+        { data: chartData[0].data },
+        { data: chartData[1].data },
+        { data: chartData[2].data },
+      ],
+    };
+  }
+
   public doughnutChartType: ChartType = 'doughnut';
 
   // events

@@ -1,7 +1,8 @@
 <canvas
+  *ngIf="doughnutChartData$ | async as data"
   baseChart
   class="chart"
-  [data]="doughnutChartData"
+  [data]="getDoughnutChartData(data)"
   [type]="doughnutChartType"
 >
 </canvas>

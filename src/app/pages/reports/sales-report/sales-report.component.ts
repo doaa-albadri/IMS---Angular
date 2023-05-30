@@ -16,6 +16,14 @@ export class SalesReportComponent {
 
   constructor(private apiService: ApiService) {}
 
+  doughnutChartData$ = this.apiService
+    .fetchSalesTypesData()
+    .pipe(map((res: any) => res));
+
+  barChartData$ = this.apiService
+    .fetchRevenueData()
+    .pipe(map((res: any) => res));
+
   cardData$: CardData[] | any = this.apiService
     .fetchSalesStats()
     .pipe(map((res: any) => res));

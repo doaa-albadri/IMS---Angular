@@ -84,4 +84,12 @@ export class ApiService {
   fetchSalesStats() {
     return this.http.get('https://imdep.free.beeceptor.com/sales-stats');
   }
+
+  fetchRevenueData() {
+    return this.http.get('https://imdep.free.beeceptor.com/revenue');
+  }
+
+  fetchSalesTypesData() {
+    return this.http.get('https://imdep.free.beeceptor.com/sales-types');
+  }
 }

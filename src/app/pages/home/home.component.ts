@@ -18,6 +18,10 @@ export class HomeComponent {
 
   constructor(private apiService: ApiService) {}
 
+  barChartData$ = this.apiService
+    .fetchProfitsData()
+    .pipe(map((res: any) => res));
+
   cardData$: CardData[] | any = this.apiService
     .fetchStats()
     .pipe(map((res: any) => res));

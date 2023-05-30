@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, Input, ViewChild, inject } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -12,11 +12,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./bar-chart.component.scss'],
 })
 export class BarChartComponent {
+  @Input() barChartData$: any;
+
   private _apiService = inject(ApiService);
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-
-  chartData$ = this._apiService.fetchProfitsData().pipe(map((res: any) => res));
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,

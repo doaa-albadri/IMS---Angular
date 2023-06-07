@@ -1,17 +1,13 @@
 <div class="container">
   <div class="row mb-5 d-flex justify-content-between cardsRow">
-    <div class="col-sm-3 shadow-sm p-3 bg-white rounded card">
-      <h5>Performance:</h5>
-      <h5>75%</h5>
+    <div
+      *ngFor="let card of cardData$ | async"
+      class="col-sm-3 shadow-sm p-3 bg-white rounded card"
+    >
+      <h5>{{ card.title }}:</h5>
+      <h5>{{ card.stat }}</h5>
     </div>
-    <div class="col-sm-3 shadow-sm p-3 bg-white rounded card">
-      <h5>Cost:</h5>
-      <h5>25,000</h5>
-    </div>
-    <div class="col-sm-3 shadow-sm p-3 bg-white rounded card">
-      <h5>Revenue:</h5>
-      <h5>32,000</h5>
-    </div>
+
     <div class="col-sm-7 mt-4 shadow-sm p-3 bg-white rounded card">
       <app-bar-chart [barChartData$]="barChartData$"></app-bar-chart>
     </div>

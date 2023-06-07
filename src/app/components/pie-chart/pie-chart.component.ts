@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, Input, ViewChild, inject } from '@angular/core';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -12,21 +12,14 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent {
+  // @Input() pieChartData$: any;
+  @Input() pieLabels$: any;
+  @Input() pieStats$: any;
+  @Input() combinedPieData$: any;
+
   private _apiService = inject(ApiService);
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-
-  chartData$ = this._apiService.fetchOrdersData().pipe(map((res: any) => res));
-
-  labels$ = this.chartData$.pipe(
-    map((labels: any) => labels.map((item: any) => item.title))
-  );
-
-  stats$ = this.chartData$.pipe(
-    map((stats: any) => stats.map((item: any) => item.stat))
-  );
-
-  combinedData$ = combineLatest([this.labels$, this.stats$]);
 
   // Pie
 

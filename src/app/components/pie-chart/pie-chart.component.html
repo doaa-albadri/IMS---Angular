@@ -1,5 +1,5 @@
 <canvas
-  *ngIf="combinedData$ | async as data"
+  *ngIf="combinedPieData$ | async as data"
   baseChart
   class="chart"
   [data]="getPieChartData(data)"

@@ -21,7 +21,6 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { SalesReportComponent } from './pages/reports/sales-report/sales-report.component';
 import { CustomerReportComponent } from './pages/reports/customer-report/customer-report.component';
 import { InventoryReportComponent } from './pages/reports/inventory-report/inventory-report.component';
-import { ScatterChartComponent } from './components/scatter-chart/scatter-chart.component';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-cha
     SalesReportComponent,
     CustomerReportComponent,
     InventoryReportComponent,
-    ScatterChartComponent,
     DoughnutChartComponent,
   ],
   imports: [

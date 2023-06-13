@@ -1,1 +1,19 @@
-<p>customer-report works!</p>
+<div class="container">
+  <div class="row mb-5 d-flex justify-content-between cardsRow">
+    <div
+      *ngFor="let card of data"
+      class="col-sm-2 col-md-3 shadow-sm p-3 bg-white rounded card"
+    >
+      <h5>{{ card.title }}</h5>
+      <h5>{{ card.stat }}</h5>
+    </div>
+  </div>
+
+  <div class="col-sm-3 shadow-sm p-3 bg-white rounded card">
+    <!-- <app-pie-chart
+        [pieLabels$]="pieLabels$"
+        [pieStats$]="pieStats$"
+        [combinedPieData$]="combinedPieData$"
+      ></app-pie-chart> -->
+  </div>
+</div>

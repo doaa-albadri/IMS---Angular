@@ -3,8 +3,6 @@ import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from 'src/app/services/api.service';
-import { map } from 'rxjs/operators';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-pie-chart',

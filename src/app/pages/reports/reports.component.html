@@ -7,18 +7,18 @@
 <div class="content" [ngClass]="{ sidebarExpanded: sidebarExpanded }">
   <div class="container">
     <div class="row">
-      <div class="col-lg-11">
+      <div class="col-lg-11 col-md-10 col-sm-12">
         <select
           class="form-select mb-4"
           aria-label="Default select example"
           [(ngModel)]="selectedReport"
         >
           <option value="sales">Sales Report</option>
-          <option value="customer">Cuatomer Report</option>
+          <option value="customer">Customer Report</option>
           <option value="inventory">Inventory Report</option>
         </select>
       </div>
-      <div class="col-lg-1 d-flex justify-content-end">
+      <div class="col-lg-1 col-md-2 col-sm-12">
         <app-button (click)="downloadPDF()"
           ><i class="bi bi-download"></i
         ></app-button>
@@ -37,7 +37,7 @@
         class="shadow-sm p-3 bg-white rounded card"
         *ngIf="selectedReport === 'customer'"
       >
-        <h2>Customer Report</h2>
+        <app-customer-report></app-customer-report>
       </div>
 
       <div

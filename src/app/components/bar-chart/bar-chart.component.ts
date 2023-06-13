@@ -1,10 +1,7 @@
-import { Component, Input, ViewChild, inject } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
-import { ApiService } from 'src/app/services/api.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bar-chart',
@@ -13,8 +10,6 @@ import { map } from 'rxjs/operators';
 })
 export class BarChartComponent {
   @Input() barChartData$: any;
-
-  private _apiService = inject(ApiService);
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 

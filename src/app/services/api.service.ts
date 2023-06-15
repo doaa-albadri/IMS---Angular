@@ -92,4 +92,16 @@ export class ApiService {
   fetchSalesTypesData() {
     return this.http.get('https://imdep.free.beeceptor.com/sales-types');
   }
+
+  fetchCustomerStats() {
+    return this.http.get('https://imdep.free.beeceptor.com/customer-stats');
+  }
+
+  fetchMonthlyOrders() {
+    return this.http.get('https://imdep.free.beeceptor.com/monthly-orders');
+  }
+
+  fetchCupons() {
+    return this.http.get('https://imdep.free.beeceptor.com/cupons');
+  }
 }

@@ -15,8 +15,6 @@ interface CardData {
 export class HomeComponent {
   sidebarExpanded = true;
 
-  cardData: CardData[] = [];
-
   constructor(private apiService: ApiService) {}
 
   pieChartData$ = this.apiService

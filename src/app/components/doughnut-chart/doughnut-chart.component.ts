@@ -13,11 +13,11 @@ export class DoughnutChartComponent {
 
   getDoughnutChartData(chartData: any) {
     return {
-      labels: [chartData[0].title, chartData[1].title, chartData[2].title],
+      labels: chartData.labels,
       datasets: [
-        { data: chartData[0].data },
-        { data: chartData[1].data },
-        { data: chartData[2].data },
+        { data: chartData.datasets[0].data },
+        { data: chartData.datasets[1].data },
+        { data: chartData.datasets[2].data },
       ],
     };
   }

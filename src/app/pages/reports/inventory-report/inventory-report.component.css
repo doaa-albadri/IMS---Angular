@@ -1,0 +1,11 @@
+.cardsRow {
+  flex-direction: row;
+  column-gap: 2rem;
+}
+
+@media only screen and (max-width: 830px) {
+  .cardsRow {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}

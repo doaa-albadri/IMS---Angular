@@ -1,1 +1,42 @@
-<p>inventory-report works!</p>
+<div class="container">
+  <div class="row mb-5 d-flex justify-content-between cardsRow">
+    <div
+      *ngFor="let card of cardData$ | async"
+      class="col-sm-12 col-lg-2 shadow-sm p-3 bg-white rounded card"
+    >
+      <h5>{{ card.title }}: {{ card.stat }}</h5>
+    </div>
+
+    <div class="row mt-5 d-flex justify-content-between cardsRow">
+      <div class="col-sm-12 col-lg-6 shadow-sm p-3 bg-white rounded card">
+        <div class="table-responsive">
+          <table id="products-table" class="table">
+            <thead style="background-color: rgb(241, 241, 241)">
+              <tr>
+                <th scope="col">Vendor</th>
+                <th scope="col">Cat.</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Product Rate</th>
+                <th scope="col">Sell Rate</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let row of purchasesData$ | async">
+              <tr>
+                <th scope="row">{{ row.vendor }}</th>
+                <td>{{ row.category }}</td>
+                <td>{{ row.product }}</td>
+                <td>{{ row.qnty }}</td>
+                <td>{{ row.productRate }}</td>
+                <td>{{ row.sellRate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-5 shadow-sm p-3 bg-white rounded card">
+        <app-bar-chart [barChartData$]="barChartData$"></app-bar-chart>
+      </div>
+    </div>
+  </div>
+</div>

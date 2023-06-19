@@ -104,4 +104,12 @@ export class ApiService {
   fetchCupons() {
     return this.http.get('https://imdep.free.beeceptor.com/cupons');
   }
+
+  fetchInventoryStats() {
+    return this.http.get('https://imdep.free.beeceptor.com/inventory-stats');
+  }
+
+  fetchPurchases() {
+    return this.http.get('https://imdep.free.beeceptor.com/purchases');
+  }
 }

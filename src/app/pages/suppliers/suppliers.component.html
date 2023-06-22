@@ -19,38 +19,41 @@
       </app-button>
     </div>
   </div>
-  <div class="table-responsive">
-    <table id="suppliers-table" class="table">
-      <thead style="background-color: rgb(241, 241, 241)">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Address</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let row of filteredData">
-        <tr>
-          <th scope="row">{{ row.id }}</th>
-          <td>{{ row.name }}</td>
-          <td>{{ row.phone }}</td>
-          <td>{{ row.address }}</td>
-          <td>
-            <button class="btn btn-secondary" (click)="editRow(row, content)">
-              <i class="bi bi-pencil"></i>
-            </button>
-          </td>
-          <td>
-            <button class="btn btn-danger" (click)="deleteSupplier(row.id)">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="shadow-sm p-3 bg-white rounded border-0 card">
+    <div class="table-responsive">
+      <table id="suppliers-table" class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let row of filteredData">
+          <tr>
+            <th scope="row">{{ row.id }}</th>
+            <td>{{ row.name }}</td>
+            <td>{{ row.phone }}</td>
+            <td>{{ row.address }}</td>
+            <td>
+              <button class="btn btn-secondary" (click)="editRow(row, content)">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteSupplier(row.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
   <ng-template #content let-modal>
     <div class="closeBtn">
       <button

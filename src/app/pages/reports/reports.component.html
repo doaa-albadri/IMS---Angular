@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-lg-11 col-md-10 col-sm-12">
         <select
-          class="form-select mb-4"
+          class="form-select mb-4 border-0 shadow-sm"
           aria-label="Default select example"
           [(ngModel)]="selectedReport"
         >
@@ -26,24 +26,15 @@
     </div>
 
     <div id="report">
-      <div
-        class="shadow-sm p-3 bg-white rounded card"
-        *ngIf="selectedReport === 'sales'"
-      >
+      <div *ngIf="selectedReport === 'sales'">
         <app-sales-report></app-sales-report>
       </div>
 
-      <div
-        class="shadow-sm p-3 bg-white rounded card"
-        *ngIf="selectedReport === 'customer'"
-      >
+      <div *ngIf="selectedReport === 'customer'">
         <app-customer-report></app-customer-report>
       </div>
 
-      <div
-        class="shadow-sm p-3 bg-white rounded card"
-        *ngIf="selectedReport === 'inventory'"
-      >
+      <div *ngIf="selectedReport === 'inventory'">
         <app-inventory-report></app-inventory-report>
       </div>
     </div>

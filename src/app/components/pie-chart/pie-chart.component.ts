@@ -10,7 +10,6 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent {
-  // @Input() pieChartData$: any;
   @Input() pieLabels$: any;
   @Input() pieStats$: any;
   @Input() combinedPieData$: any;

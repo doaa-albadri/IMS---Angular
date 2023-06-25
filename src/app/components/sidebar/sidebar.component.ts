@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,8 +12,4 @@ export class SidebarComponent {
 
   constructor(private authService: AuthService) {}
   handleSidebarToggle = () => this.toggleSidebar.emit(!this.isExpanded);
-
-  onLogout() {
-    this.authService.logout();
-  }
 }

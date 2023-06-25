@@ -14,16 +14,6 @@ interface CardData {
   styleUrls: ['./customer-report.component.css'],
 })
 export class CustomerReportComponent {
-  data = [
-    {
-      title: 'Customer Satisfaction:',
-      stat: '100%',
-    },
-    { title: 'Number of Orders:', stat: 1000 },
-    { title: 'Commission:', stat: 500 },
-    { title: 'Returned Customers:', stat: 50 },
-  ];
-
   constructor(private apiService: ApiService) {}
 
   cardData$: CardData[] | any = this.apiService

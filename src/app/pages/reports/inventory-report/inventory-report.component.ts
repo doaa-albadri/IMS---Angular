@@ -22,49 +22,6 @@ interface PurchaseDetail {
 export class InventoryReportComponent {
   purchaseData: PurchaseDetail[];
 
-  // purchaseDetails: PurchaseDetail[] = [
-  //   {
-  //     vendor: 'first vendor',
-  //     category: 'first cat',
-  //     product: 'first product',
-  //     qnty: 10,
-  //     productRate: 33,
-  //     sellRate: 44,
-  //   },
-  //   {
-  //     vendor: 'first vendor',
-  //     category: 'first cat',
-  //     product: 'first product',
-  //     qnty: 10,
-  //     productRate: 33,
-  //     sellRate: 44,
-  //   },
-  //   {
-  //     vendor: 'first vendor',
-  //     category: 'first cat',
-  //     product: 'first product',
-  //     qnty: 10,
-  //     productRate: 33,
-  //     sellRate: 44,
-  //   },
-  //   {
-  //     vendor: 'first vendor',
-  //     category: 'first cat',
-  //     product: 'first product',
-  //     qnty: 10,
-  //     productRate: 33,
-  //     sellRate: 44,
-  //   },
-  //   {
-  //     vendor: 'first vendor',
-  //     category: 'first cat',
-  //     product: 'first product',
-  //     qnty: 10,
-  //     productRate: 33,
-  //     sellRate: 44,
-  //   },
-  // ];
-
   constructor(private apiService: ApiService) {}
 
   cardData$: CardData[] | any = this.apiService

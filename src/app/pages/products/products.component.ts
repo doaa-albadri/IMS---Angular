@@ -59,7 +59,6 @@ export class ProductsComponent implements OnInit {
 
   onSubmit(): void {
     if (this.rowData) {
-      console.log(this.form.value);
       this.apiService
         .editProduct(
           this.form.value.id,

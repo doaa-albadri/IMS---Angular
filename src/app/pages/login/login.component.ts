@@ -33,7 +33,7 @@ export class LoginComponent {
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((res) => {
-        if (res.registered) {
+        if (res.auth) {
           localStorage.setItem('token', res.idToken);
           this.router.navigate(['/']);
         }

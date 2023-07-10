@@ -21,7 +21,7 @@ export class SuppliersComponent implements OnInit {
   sidebarExpanded = true;
   searchTerm: string = '';
   title!: string;
-  rowData: any = {};
+  rowData: any;
   suppliersData: Supplier[] = [];
   filteredData: Supplier[] = [];
   form!: FormGroup;
@@ -58,9 +58,8 @@ export class SuppliersComponent implements OnInit {
 
   onSubmit(): void {
     if (this.rowData) {
-      console.log(this.form.value);
       this.apiService
-        .editProduct(
+        .editSupplier(
           this.form.value.id,
           this.form.value.name,
           this.form.value.phone,
@@ -68,7 +67,7 @@ export class SuppliersComponent implements OnInit {
         )
         .subscribe();
     } else {
-      this.apiService.addProduct(
+      this.apiService.addSupplier(
         this.form.value.id,
         this.form.value.name,
         this.form.value.phone,

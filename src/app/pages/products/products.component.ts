@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit {
   filteredData: any[] = [];
   rowData: any;
   form!: FormGroup;
+  isFieldDisabled!: boolean;
 
   constructor(
     private modalService: NgbModal,
@@ -91,6 +92,8 @@ export class ProductsComponent implements OnInit {
 
   editRow(rowData: any, content: any) {
     this.rowData = rowData;
+
+    this.isFieldDisabled = true;
     this.form = this.fb.group({
       id: [this.rowData ? this.rowData.id : '', [Validators.required]],
       name: [this.rowData ? this.rowData.name : '', [Validators.required]],
@@ -134,6 +137,8 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduct(content: any) {
+    this.isFieldDisabled = false;
+
     this.form = this.fb.group({
       id: ['', [Validators.required]],
       name: ['', [Validators.required]],

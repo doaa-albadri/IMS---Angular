@@ -25,6 +25,7 @@ export class SuppliersComponent implements OnInit {
   suppliersData: Supplier[] = [];
   filteredData: Supplier[] = [];
   form!: FormGroup;
+  isFieldDisabled!: boolean;
 
   constructor(
     private modalService: NgbModal,
@@ -108,6 +109,8 @@ export class SuppliersComponent implements OnInit {
   }
 
   addSupplier(content: any) {
+    this.isFieldDisabled = false;
+
     this.openVerticallyCentered(content);
 
     this.form = this.fb.group({
@@ -120,6 +123,9 @@ export class SuppliersComponent implements OnInit {
 
   editRow(rowData: any, content: any) {
     this.rowData = rowData;
+
+    this.isFieldDisabled = true;
+
     this.form = this.fb.group({
       id: [this.rowData ? this.rowData.id : '', [Validators.required]],
       name: [this.rowData ? this.rowData.name : '', [Validators.required]],

@@ -70,6 +70,7 @@
           <div class="w-100">
             <label for="id" class="form-label">ID:</label>
             <input
+              [readonly]="isFieldDisabled"
               type="number"
               formControlName="id"
               class="form-control"

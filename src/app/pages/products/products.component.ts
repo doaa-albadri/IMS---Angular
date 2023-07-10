@@ -37,11 +37,15 @@ export class ProductsComponent implements OnInit {
     .fetchProductsData()
     .pipe(map((res: any) => res));
 
-  ngOnInit(): void {
+  private updateProductData(): void {
     this.productsData$.subscribe((data) => {
       this.productsData = data;
       this.filteredData = data;
     });
+  }
+
+  ngOnInit(): void {
+    this.updateProductData();
   }
 
   get id() {
@@ -66,14 +70,20 @@ export class ProductsComponent implements OnInit {
           this.form.value.sku,
           this.form.value.price
         )
-        .subscribe();
+        .subscribe(() => {
+          this.updateProductData();
+        });
     } else {
-      this.apiService.addProduct(
-        this.form.value.id,
-        this.form.value.name,
-        this.form.value.sku,
-        this.form.value.price
-      );
+      this.apiService
+        .addProduct(
+          this.form.value.id,
+          this.form.value.name,
+          this.form.value.sku,
+          this.form.value.price
+        )
+        .subscribe(() => {
+          this.updateProductData();
+        });
 
       this.form.reset();
     }
@@ -117,6 +127,7 @@ export class ProductsComponent implements OnInit {
     this.apiService.deleteProduct(id).subscribe(
       (res) => {
         console.log('DELETED SUCCESSFULLY', res);
+        this.updateProductData();
       },
       (error) => console.log('ERROR', error)
     );

@@ -36,11 +36,15 @@ export class SuppliersComponent implements OnInit {
     .fetchSuppliersData()
     .pipe(map((res: any) => res));
 
-  ngOnInit(): void {
+  private updateSupplierData(): void {
     this.suppliersData$.subscribe((data) => {
       this.suppliersData = data;
       this.filteredData = data;
     });
+  }
+
+  ngOnInit(): void {
+    this.updateSupplierData();
   }
 
   get id() {
@@ -65,14 +69,20 @@ export class SuppliersComponent implements OnInit {
           this.form.value.phone,
           this.form.value.address
         )
-        .subscribe();
+        .subscribe(() => {
+          this.updateSupplierData();
+        });
     } else {
-      this.apiService.addSupplier(
-        this.form.value.id,
-        this.form.value.name,
-        this.form.value.phone,
-        this.form.value.address
-      );
+      this.apiService
+        .addSupplier(
+          this.form.value.id,
+          this.form.value.name,
+          this.form.value.phone,
+          this.form.value.address
+        )
+        .subscribe(() => {
+          this.updateSupplierData();
+        });
 
       this.form.reset();
     }
@@ -125,6 +135,7 @@ export class SuppliersComponent implements OnInit {
   deleteSupplier(id: number | string) {
     this.apiService.deleteSupplier(id).subscribe(
       (res) => {
+        this.updateSupplierData();
         console.log('DELETED SUCCESSFULLY', res);
       },
       (error) => console.log('ERROR', error)

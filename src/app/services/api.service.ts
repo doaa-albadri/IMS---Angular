@@ -54,29 +54,21 @@ export class ApiService {
   }
 
   addProduct(id: number, name: string, sku: string, price: number) {
-    this.http
-      .post<any>('http://localhost:5000/products', {
-        id: id,
-        name: name,
-        sku: sku,
-        price: price,
-      })
-      .subscribe((res) => {
-        console.log('RESULT:', res);
-      });
+    return this.http.post<any>('http://localhost:5000/products', {
+      id: id,
+      name: name,
+      sku: sku,
+      price: price,
+    });
   }
 
   addSupplier(id: number, name: string, phone: number, address: string) {
-    this.http
-      .post<any>('http://localhost:5000/suppliers', {
-        id: id,
-        name: name,
-        phone: phone,
-        address: address,
-      })
-      .subscribe((res) => {
-        console.log('RESULT:', res);
-      });
+    return this.http.post<any>('http://localhost:5000/suppliers', {
+      id: id,
+      name: name,
+      phone: phone,
+      address: address,
+    });
   }
 
   fetchSalesStats() {

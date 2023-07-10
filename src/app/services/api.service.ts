@@ -45,7 +45,7 @@ export class ApiService {
   }
 
   editSupplier(id: number, name: string, phone: number, address: string) {
-    return this.http.put(`https://imdep.free.beeceptor.com/suppliers/${id}`, {
+    return this.http.put(`http://localhost:5000/suppliers/${id}`, {
       id: id,
       name: name,
       phone: phone,
